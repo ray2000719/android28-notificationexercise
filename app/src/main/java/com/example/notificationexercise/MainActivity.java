@@ -15,13 +15,20 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String CHANNEL_ID = "Coder";
+    private static final String CHANNEL_ID = "Coder1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID, "DemoCode", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            assert manager != null;
+            manager.createNotificationChannel(channel);
+        }
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
